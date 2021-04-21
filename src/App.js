@@ -3,6 +3,7 @@ import queryString from "query-string";
 
 import Pagination from "./Pagination";
 import PostList from "./PostList";
+import SearchForm from "./SearchForm";
 
 function App() {
   const [postList, setPostlist] = useState([]);
@@ -44,9 +45,19 @@ function App() {
     });
   }
 
+  function handleSearchItemChange(newFilter) {
+    console.log("new filter ", newFilter);
+    setFilters({
+      ...filters,
+      _page: 1,
+      title_like: newFilter.searchItem,
+    });
+  }
+
   return (
     <div>
       <h1>React hooks</h1>
+      <SearchForm onSubmit={handleSearchItemChange} />
       <PostList posts={postList} />
       <Pagination pagination={pagination} onPageChange={handlePageChange} />
     </div>
