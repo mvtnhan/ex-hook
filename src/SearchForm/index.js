@@ -34,7 +34,12 @@ function SearchForm(props) {
 
   return (
     <form>
-      <input type="text" value={searchItem} onChange={handleSearchItemChange} />
+      <input
+        type="text"
+        value={searchItem}
+        onChange={handleSearchItemChange}
+        autoFocus={true}
+      />
     </form>
   );
 }
