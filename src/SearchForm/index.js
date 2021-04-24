@@ -13,6 +13,7 @@ function SearchForm(props) {
   const { onSubmit } = props;
   const [searchItem, setSearchItem] = useState("");
   const typingTimeoutRef = useRef(null);
+  const searchFocus = useRef(null);
 
   function handleSearchItemChange(e) {
     const value = e.target.value;
@@ -32,14 +33,23 @@ function SearchForm(props) {
     }, 300);
   }
 
+  function handleFocus() {
+    searchFocus.current.focus();
+  }
+
   return (
     <form>
       <input
+        id="ip"
         type="text"
         value={searchItem}
         onChange={handleSearchItemChange}
-        autoFocus={true}
+        ref={searchFocus}
       />
+
+      <button type="button" onClick={handleFocus}>
+        Click me to focus on the text field!
+      </button>
     </form>
   );
 }
